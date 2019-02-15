@@ -1,3 +1,4 @@
 class ApplicationMailbox < ActionMailbox::Base
   # routing /something/i => :somewhere
+  routing all: :debug_logger
 end
