@@ -1,20 +1,16 @@
-version: "3"
+version: "3.7"
 
 services:
   db:
-    image: mysql:5.7
-    command:
-      - --innodb_file_per_table
-      - --innodb_file_format=Barracuda
-      - --innodb_large_prefix
-      - --character-set-server=utf8mb4
+    image: postgres:10.7-alpine
     ports:
-      - "${MYSQL_HOST_PORT:-3306}:3306"
+      - "${POSTGRES_PORT:-5432}:5432"
     environment:
-      MYSQL_ALLOW_EMPTY_PASSWORD: 1
-    restart: always
+      - "POSTGRES_USER=postgres"
+      - "POSTGRES_PASSWORD=postgres"
+    restart: "no"
   redis:
     image: redis:alpine
     ports:
-      - "${REDIS_HOST_PORT:-6379}:6379"
-    restart: always
+      - "${REDIS_PORT:-6379}:6379"
+    restart: "no"
